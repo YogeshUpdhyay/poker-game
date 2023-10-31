@@ -5,7 +5,6 @@ import (
 )
 
 func main() {
-	fmt.Println("Creating a new deck")
 	fmt.Println("Lets play some poker")
 
 	// get the no of players playing poker
@@ -16,9 +15,11 @@ func main() {
 	// to do this we first need to
 	// create a new deck
 	gameDeck := newDeck()
-	fmt.Println(gameDeck)
-	fmt.Println(len(gameDeck))
 
+	// deal a hand of poker
+	hand := gameDeck.deal(2)
+	fmt.Println((hand))
+	fmt.Println((gameDeck))
 }
 
 func getNoOfPlayers() int {

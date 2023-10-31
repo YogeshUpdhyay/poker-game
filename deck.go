@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"math/rand"
+)
+
 type Deck []Card
 
 func newDeck() Deck {
@@ -20,6 +25,14 @@ func newDeck() Deck {
 	return currDeck
 }
 
-func (d Deck) deal() Deck {
-	return Deck{}
+func (d Deck) deal(noOfCards int) Deck {
+	fmt.Println(noOfCards)
+	deal := Deck{}
+	for i := 0; i < noOfCards; i++ {
+		randIndex := rand.Intn(len(d))
+		d[randIndex].markDealt()
+		cardDealt := d[randIndex]
+		deal = append(deal, cardDealt)
+	}
+	return deal
 }

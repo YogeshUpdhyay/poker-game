@@ -13,3 +13,7 @@ func (c Card) getSuit() string {
 func (c Card) getOrdinate() string {
 	return c.ordinate
 }
+
+func (c Card) markDealt() {
+	c.dealt = true
+}
