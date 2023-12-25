@@ -1,4 +1,4 @@
-package main
+package deck
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 
 type Deck []Card
 
-func newDeck() Deck {
+func NewDeck() Deck {
 	// generating the 52 card deck
 	currDeck := Deck{}
 	suits := []string{"Spades", "Clubs", "Diamonds", "Hearts"}
@@ -25,12 +25,12 @@ func newDeck() Deck {
 	return currDeck
 }
 
-func (d Deck) deal(noOfCards int) Deck {
+func (d Deck) Deal(noOfCards int) Deck {
 	fmt.Println(noOfCards)
 	deal := Deck{}
 	for i := 0; i < noOfCards; i++ {
 		randIndex := rand.Intn(len(d))
-		d[randIndex].markDealt()
+		d[randIndex].MarkDealt()
 		cardDealt := d[randIndex]
 		deal = append(deal, cardDealt)
 	}

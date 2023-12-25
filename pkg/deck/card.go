@@ -1,4 +1,4 @@
-package main
+package deck
 
 type Card struct {
 	suit     string
@@ -6,14 +6,14 @@ type Card struct {
 	dealt    bool
 }
 
-func (c Card) getSuit() string {
+func (c Card) GetSuit() string {
 	return c.suit
 }
 
-func (c Card) getOrdinate() string {
+func (c Card) GetOrdinate() string {
 	return c.ordinate
 }
 
-func (c Card) markDealt() {
+func (c Card) MarkDealt() {
 	c.dealt = true
 }
