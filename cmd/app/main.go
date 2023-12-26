@@ -3,8 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-
-	// "pokergame/pkg/deck"
 	"pokergame/pkg/board"
 )
 
@@ -14,7 +12,16 @@ func main() {
 	// get the no of players playing poker
 	noOfPlayers := getNoOfPlayers()
 
-	// creating players data
+	// // creating players data and initializing a board
+	players := GetPlayersData(noOfPlayers)
+	board := board.CreateBoard(players, 10)
+
+	fmt.Printf("Starting the hand")
+	board.StartHand()
+	fmt.Printf("The hand winner is %s", board.LastHandWinner())
+}
+
+func GetPlayersData(noOfPlayers int) []*board.Player {
 	players := make([]*board.Player, noOfPlayers)
 	for currPlayerIdx := 0; currPlayerIdx < noOfPlayers; currPlayerIdx++ {
 		players[currPlayerIdx] = &board.Player{}
@@ -29,19 +36,7 @@ func main() {
 		players[currPlayerIdx].SetName(currPlayerName)
 		players[currPlayerIdx].SetChipsValue(currPlayerBuyIn)
 	}
-
-	fmt.Println(players)
-
-	// deal 2 cards to each player from the deck
-
-	// to do this we first need to
-	// create a new deck
-	// gameDeck := deck.NewDeck()
-
-	// deal a hand of poker
-	// hand := gameDeck.Deal(2)
-	// fmt.Println((hand))
-	// fmt.Println((gameDeck))
+	return players
 }
 
 func getNoOfPlayers() int {
