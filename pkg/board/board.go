@@ -1,6 +1,6 @@
 package board
 
-import "pokergame/pkg/deck"
+import "poker-game/pkg/deck"
 
 type Board struct {
 	players       []*Player
