@@ -18,7 +18,9 @@ func GetTables(c *gin.Context) {
 
 func JoinATable(c *gin.Context) {
 	var body struct {
-		Name string `json:"name"`
+		Name        string `json:"name"`
+		BuyInAmount int    `json:"buyInAmount"`
+		PlayerId    int    `json:"playerId"`
 	}
 	if err := c.BindJSON(&body); err != nil {
 		// Handle the error if the JSON is not as expected
