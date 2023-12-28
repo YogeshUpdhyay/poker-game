@@ -1,8 +1,8 @@
-package board
+package game
 
 import "poker-game/pkg/deck"
 
-type Board struct {
+type Game struct {
 	players       []*Player
 	smallBlind    int
 	bigBlind      int
@@ -11,9 +11,9 @@ type Board struct {
 	deck          *deck.Deck
 }
 
-func CreateBoard(players []*Player, blindValue int) Board {
+func CreateBoard(players []*Player, blindValue int) Game {
 	deck := deck.NewDeck()
-	return Board{
+	return Game{
 		players:       players,
 		smallBlind:    blindValue,
 		bigBlind:      blindValue * 2,
@@ -23,8 +23,8 @@ func CreateBoard(players []*Player, blindValue int) Board {
 	}
 }
 
-func (board *Board) StartHand() {}
+func (Game *Game) StartHand() {}
 
-func (board *Board) LastHandWinner() string {
+func (Game *Game) LastHandWinner() string {
 	return ""
 }

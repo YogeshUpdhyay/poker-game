@@ -34,6 +34,10 @@ func InitializeDatabase() {
 	db.AutoMigrate(&models.Table{})
 }
 
+func GetDB() *gorm.DB {
+	return db
+}
+
 func GetApp() *gin.Engine {
 	// initialize environment
 	InitializeEnv()
