@@ -2,30 +2,35 @@ package controllers
 
 import (
 	"net/http"
-	"poker-game/internal/serializers"
+	"poker-game/internal/initializers"
+	"poker-game/internal/models"
 
 	"github.com/gin-gonic/gin"
 )
 
 func GetTables(c *gin.Context) {
-	tables := []serializers.Table{
-		{Name: "LA", MaxBuyIn: 10000},
-		{Name: "Miami", MaxBuyIn: 50000},
-		{Name: "Las Vegas", MaxBuyIn: 100000},
+	var tables []models.Table
+	if result := initializers.DB.Find(&tables); result.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "There was an error fetching the tables"})
 	}
 	c.JSON(200, gin.H{"tables": tables})
 }
 
-func JoinATable(c *gin.Context) {
-	var body struct {
-		Name        string `json:"name"`
-		BuyInAmount int    `json:"buyInAmount"`
-		PlayerId    int    `json:"playerId"`
-	}
-	if err := c.BindJSON(&body); err != nil {
-		// Handle the error if the JSON is not as expected
+func CreateTable(c *gin.Context) {
+	var table models.Table
+
+	if err := c.BindJSON(&table); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.IndentedJSON(http.StatusOK, body)
+
+	if result := initializers.DB.Create(&table); result.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "There was an error adding the table to the database"})
+		return
+	}
+
+	c.IndentedJSON(http.StatusCreated, gin.H{
+		"message": "Created",
+		"table":   table,
+	})
 }

@@ -16,6 +16,6 @@ type Game struct {
 type Player struct {
 	gorm.Model
 	Name        string `json:"name"`
-	BuyInAmount int    `json:"buyInAmount"`
+	BuyInAmount *int   `json:"buyInAmount"`
 	GameId      *uint  `json:"gameId" gorm:"foreignKey:GameID"`
 }

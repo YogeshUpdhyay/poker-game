@@ -8,4 +8,5 @@ import (
 
 func SetupTableRouter(router *gin.Engine) {
 	router.GET("/tables", controllers.GetTables)
+	router.POST("/table", controllers.CreateTable)
 }

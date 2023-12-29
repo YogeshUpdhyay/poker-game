@@ -28,5 +28,7 @@ func GetApp() *gin.Engine {
 	router = gin.Default()
 	routes.SetupTableRouter(router)
 	routes.SetupPlayerRouter(router)
+	routes.SetupGameRouter(router)
+
 	return router
 }
